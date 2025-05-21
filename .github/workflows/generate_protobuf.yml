@@ -1,0 +1,25 @@
+name: Checkout - Set up go - Generate go source
+
+on:
+  pull_request:
+    paths:
+      - proto/**/*.proto
+
+jobs:
+  generate-proto-buf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.24.3'
+          check-latest: false
+          cache: true
+
+      - name: Generate go source (proto)
+        shell: bash
+        run: |
+          make pipeline-build
