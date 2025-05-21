@@ -1,0 +1,36 @@
+syntax = "proto3";
+package kaffein.pb;
+
+import "google/api/validate.proto";
+
+option go_package = "github.com/goffyshop/proto;pb";
+
+service HelloWord {
+  // unary
+  rpc SayHelloUnary(WorldRequest) returns(WorldResponse);
+  // stream (server)
+  rpc sayHelloStreamServer(WorldRequest) returns(stream WorldRequest);
+  // stream (client)
+  rpc SayHelloStreamClient(stream WorldRequest) returns(WorldResponse);
+  // bi-directional (stream)
+  rpc sayHelloBidirectional(stream WorldRequest) returns(stream WorldResponse);
+}
+
+message WorldRequest {
+  string Name = 1 [
+    json_name = "name_request",
+    (validate.rules).string = {
+      uuid: true,
+      min_len: 1
+    }
+  ];
+}
+
+message WorldResponse {
+  string Name = 1 [
+    json_name = "name_response",
+    (validate.rules).string = {
+      min_len: 1
+    }
+  ];
+}
