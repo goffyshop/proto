@@ -5,7 +5,7 @@ import "google/api/validate.proto";
 
 option go_package = "github.com/goffyshop/proto;pb";
 
-service HelloWord {
+service HelloWorld {
   // unary
   rpc SayHelloUnary(WorldRequest) returns(WorldResponse);
   // stream (server)
