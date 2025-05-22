@@ -120,8 +120,9 @@ const file_example_proto_rawDesc = "" +
 	"\x04Name\x18\x01 \x01(\tB\n" +
 	"\xfaB\ar\x05\x10\x01\xb0\x01\x01R\fname_request\"5\n" +
 	"\rWorldResponse\x12$\n" +
-	"\x04Name\x18\x01 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\rname_response2\xc0\x02\n" +
-	"\tHelloWord\x12D\n" +
+	"\x04Name\x18\x01 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\rname_response2\xc1\x02\n" +
+	"\n" +
+	"HelloWorld\x12D\n" +
 	"\rSayHelloUnary\x12\x18.kaffein.pb.WorldRequest\x1a\x19.kaffein.pb.WorldResponse\x12L\n" +
 	"\x14sayHelloStreamServer\x12\x18.kaffein.pb.WorldRequest\x1a\x18.kaffein.pb.WorldRequest0\x01\x12M\n" +
 	"\x14SayHelloStreamClient\x12\x18.kaffein.pb.WorldRequest\x1a\x19.kaffein.pb.WorldResponse(\x01\x12P\n" +
@@ -145,14 +146,14 @@ var file_example_proto_goTypes = []any{
 	(*WorldResponse)(nil), // 1: kaffein.pb.WorldResponse
 }
 var file_example_proto_depIdxs = []int32{
-	0, // 0: kaffein.pb.HelloWord.SayHelloUnary:input_type -> kaffein.pb.WorldRequest
-	0, // 1: kaffein.pb.HelloWord.sayHelloStreamServer:input_type -> kaffein.pb.WorldRequest
-	0, // 2: kaffein.pb.HelloWord.SayHelloStreamClient:input_type -> kaffein.pb.WorldRequest
-	0, // 3: kaffein.pb.HelloWord.sayHelloBidirectional:input_type -> kaffein.pb.WorldRequest
-	1, // 4: kaffein.pb.HelloWord.SayHelloUnary:output_type -> kaffein.pb.WorldResponse
-	0, // 5: kaffein.pb.HelloWord.sayHelloStreamServer:output_type -> kaffein.pb.WorldRequest
-	1, // 6: kaffein.pb.HelloWord.SayHelloStreamClient:output_type -> kaffein.pb.WorldResponse
-	1, // 7: kaffein.pb.HelloWord.sayHelloBidirectional:output_type -> kaffein.pb.WorldResponse
+	0, // 0: kaffein.pb.HelloWorld.SayHelloUnary:input_type -> kaffein.pb.WorldRequest
+	0, // 1: kaffein.pb.HelloWorld.sayHelloStreamServer:input_type -> kaffein.pb.WorldRequest
+	0, // 2: kaffein.pb.HelloWorld.SayHelloStreamClient:input_type -> kaffein.pb.WorldRequest
+	0, // 3: kaffein.pb.HelloWorld.sayHelloBidirectional:input_type -> kaffein.pb.WorldRequest
+	1, // 4: kaffein.pb.HelloWorld.SayHelloUnary:output_type -> kaffein.pb.WorldResponse
+	0, // 5: kaffein.pb.HelloWorld.sayHelloStreamServer:output_type -> kaffein.pb.WorldRequest
+	1, // 6: kaffein.pb.HelloWorld.SayHelloStreamClient:output_type -> kaffein.pb.WorldResponse
+	1, // 7: kaffein.pb.HelloWorld.sayHelloBidirectional:output_type -> kaffein.pb.WorldResponse
 	4, // [4:8] is the sub-list for method output_type
 	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

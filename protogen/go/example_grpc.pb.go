@@ -19,16 +19,16 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	HelloWord_SayHelloUnary_FullMethodName         = "/kaffein.pb.HelloWord/SayHelloUnary"
-	HelloWord_SayHelloStreamServer_FullMethodName  = "/kaffein.pb.HelloWord/sayHelloStreamServer"
-	HelloWord_SayHelloStreamClient_FullMethodName  = "/kaffein.pb.HelloWord/SayHelloStreamClient"
-	HelloWord_SayHelloBidirectional_FullMethodName = "/kaffein.pb.HelloWord/sayHelloBidirectional"
+	HelloWorld_SayHelloUnary_FullMethodName         = "/kaffein.pb.HelloWorld/SayHelloUnary"
+	HelloWorld_SayHelloStreamServer_FullMethodName  = "/kaffein.pb.HelloWorld/sayHelloStreamServer"
+	HelloWorld_SayHelloStreamClient_FullMethodName  = "/kaffein.pb.HelloWorld/SayHelloStreamClient"
+	HelloWorld_SayHelloBidirectional_FullMethodName = "/kaffein.pb.HelloWorld/sayHelloBidirectional"
 )
 
-// HelloWordClient is the client API for HelloWord service.
+// HelloWorldClient is the client API for HelloWorld service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type HelloWordClient interface {
+type HelloWorldClient interface {
 	// unary
 	SayHelloUnary(ctx context.Context, in *WorldRequest, opts ...grpc.CallOption) (*WorldResponse, error)
 	// stream (server)
@@ -39,27 +39,27 @@ type HelloWordClient interface {
 	SayHelloBidirectional(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[WorldRequest, WorldResponse], error)
 }
 
-type helloWordClient struct {
+type helloWorldClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewHelloWordClient(cc grpc.ClientConnInterface) HelloWordClient {
-	return &helloWordClient{cc}
+func NewHelloWorldClient(cc grpc.ClientConnInterface) HelloWorldClient {
+	return &helloWorldClient{cc}
 }
 
-func (c *helloWordClient) SayHelloUnary(ctx context.Context, in *WorldRequest, opts ...grpc.CallOption) (*WorldResponse, error) {
+func (c *helloWorldClient) SayHelloUnary(ctx context.Context, in *WorldRequest, opts ...grpc.CallOption) (*WorldResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(WorldResponse)
-	err := c.cc.Invoke(ctx, HelloWord_SayHelloUnary_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, HelloWorld_SayHelloUnary_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *helloWordClient) SayHelloStreamServer(ctx context.Context, in *WorldRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[WorldRequest], error) {
+func (c *helloWorldClient) SayHelloStreamServer(ctx context.Context, in *WorldRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[WorldRequest], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &HelloWord_ServiceDesc.Streams[0], HelloWord_SayHelloStreamServer_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &HelloWorld_ServiceDesc.Streams[0], HelloWorld_SayHelloStreamServer_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -74,11 +74,11 @@ func (c *helloWordClient) SayHelloStreamServer(ctx context.Context, in *WorldReq
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type HelloWord_SayHelloStreamServerClient = grpc.ServerStreamingClient[WorldRequest]
+type HelloWorld_SayHelloStreamServerClient = grpc.ServerStreamingClient[WorldRequest]
 
-func (c *helloWordClient) SayHelloStreamClient(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[WorldRequest, WorldResponse], error) {
+func (c *helloWorldClient) SayHelloStreamClient(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[WorldRequest, WorldResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &HelloWord_ServiceDesc.Streams[1], HelloWord_SayHelloStreamClient_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &HelloWorld_ServiceDesc.Streams[1], HelloWorld_SayHelloStreamClient_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -87,11 +87,11 @@ func (c *helloWordClient) SayHelloStreamClient(ctx context.Context, opts ...grpc
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type HelloWord_SayHelloStreamClientClient = grpc.ClientStreamingClient[WorldRequest, WorldResponse]
+type HelloWorld_SayHelloStreamClientClient = grpc.ClientStreamingClient[WorldRequest, WorldResponse]
 
-func (c *helloWordClient) SayHelloBidirectional(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[WorldRequest, WorldResponse], error) {
+func (c *helloWorldClient) SayHelloBidirectional(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[WorldRequest, WorldResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &HelloWord_ServiceDesc.Streams[2], HelloWord_SayHelloBidirectional_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &HelloWorld_ServiceDesc.Streams[2], HelloWorld_SayHelloBidirectional_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -100,12 +100,12 @@ func (c *helloWordClient) SayHelloBidirectional(ctx context.Context, opts ...grp
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type HelloWord_SayHelloBidirectionalClient = grpc.BidiStreamingClient[WorldRequest, WorldResponse]
+type HelloWorld_SayHelloBidirectionalClient = grpc.BidiStreamingClient[WorldRequest, WorldResponse]
 
-// HelloWordServer is the server API for HelloWord service.
-// All implementations must embed UnimplementedHelloWordServer
+// HelloWorldServer is the server API for HelloWorld service.
+// All implementations must embed UnimplementedHelloWorldServer
 // for forward compatibility.
-type HelloWordServer interface {
+type HelloWorldServer interface {
 	// unary
 	SayHelloUnary(context.Context, *WorldRequest) (*WorldResponse, error)
 	// stream (server)
@@ -114,118 +114,118 @@ type HelloWordServer interface {
 	SayHelloStreamClient(grpc.ClientStreamingServer[WorldRequest, WorldResponse]) error
 	// bi-directional (stream)
 	SayHelloBidirectional(grpc.BidiStreamingServer[WorldRequest, WorldResponse]) error
-	mustEmbedUnimplementedHelloWordServer()
+	mustEmbedUnimplementedHelloWorldServer()
 }
 
-// UnimplementedHelloWordServer must be embedded to have
+// UnimplementedHelloWorldServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedHelloWordServer struct{}
+type UnimplementedHelloWorldServer struct{}
 
-func (UnimplementedHelloWordServer) SayHelloUnary(context.Context, *WorldRequest) (*WorldResponse, error) {
+func (UnimplementedHelloWorldServer) SayHelloUnary(context.Context, *WorldRequest) (*WorldResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SayHelloUnary not implemented")
 }
-func (UnimplementedHelloWordServer) SayHelloStreamServer(*WorldRequest, grpc.ServerStreamingServer[WorldRequest]) error {
+func (UnimplementedHelloWorldServer) SayHelloStreamServer(*WorldRequest, grpc.ServerStreamingServer[WorldRequest]) error {
 	return status.Errorf(codes.Unimplemented, "method SayHelloStreamServer not implemented")
 }
-func (UnimplementedHelloWordServer) SayHelloStreamClient(grpc.ClientStreamingServer[WorldRequest, WorldResponse]) error {
+func (UnimplementedHelloWorldServer) SayHelloStreamClient(grpc.ClientStreamingServer[WorldRequest, WorldResponse]) error {
 	return status.Errorf(codes.Unimplemented, "method SayHelloStreamClient not implemented")
 }
-func (UnimplementedHelloWordServer) SayHelloBidirectional(grpc.BidiStreamingServer[WorldRequest, WorldResponse]) error {
+func (UnimplementedHelloWorldServer) SayHelloBidirectional(grpc.BidiStreamingServer[WorldRequest, WorldResponse]) error {
 	return status.Errorf(codes.Unimplemented, "method SayHelloBidirectional not implemented")
 }
-func (UnimplementedHelloWordServer) mustEmbedUnimplementedHelloWordServer() {}
-func (UnimplementedHelloWordServer) testEmbeddedByValue()                   {}
+func (UnimplementedHelloWorldServer) mustEmbedUnimplementedHelloWorldServer() {}
+func (UnimplementedHelloWorldServer) testEmbeddedByValue()                    {}
 
-// UnsafeHelloWordServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to HelloWordServer will
+// UnsafeHelloWorldServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to HelloWorldServer will
 // result in compilation errors.
-type UnsafeHelloWordServer interface {
-	mustEmbedUnimplementedHelloWordServer()
+type UnsafeHelloWorldServer interface {
+	mustEmbedUnimplementedHelloWorldServer()
 }
 
-func RegisterHelloWordServer(s grpc.ServiceRegistrar, srv HelloWordServer) {
-	// If the following call pancis, it indicates UnimplementedHelloWordServer was
+func RegisterHelloWorldServer(s grpc.ServiceRegistrar, srv HelloWorldServer) {
+	// If the following call pancis, it indicates UnimplementedHelloWorldServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&HelloWord_ServiceDesc, srv)
+	s.RegisterService(&HelloWorld_ServiceDesc, srv)
 }
 
-func _HelloWord_SayHelloUnary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _HelloWorld_SayHelloUnary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(WorldRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(HelloWordServer).SayHelloUnary(ctx, in)
+		return srv.(HelloWorldServer).SayHelloUnary(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: HelloWord_SayHelloUnary_FullMethodName,
+		FullMethod: HelloWorld_SayHelloUnary_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HelloWordServer).SayHelloUnary(ctx, req.(*WorldRequest))
+		return srv.(HelloWorldServer).SayHelloUnary(ctx, req.(*WorldRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _HelloWord_SayHelloStreamServer_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _HelloWorld_SayHelloStreamServer_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(WorldRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(HelloWordServer).SayHelloStreamServer(m, &grpc.GenericServerStream[WorldRequest, WorldRequest]{ServerStream: stream})
+	return srv.(HelloWorldServer).SayHelloStreamServer(m, &grpc.GenericServerStream[WorldRequest, WorldRequest]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type HelloWord_SayHelloStreamServerServer = grpc.ServerStreamingServer[WorldRequest]
+type HelloWorld_SayHelloStreamServerServer = grpc.ServerStreamingServer[WorldRequest]
 
-func _HelloWord_SayHelloStreamClient_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(HelloWordServer).SayHelloStreamClient(&grpc.GenericServerStream[WorldRequest, WorldResponse]{ServerStream: stream})
+func _HelloWorld_SayHelloStreamClient_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(HelloWorldServer).SayHelloStreamClient(&grpc.GenericServerStream[WorldRequest, WorldResponse]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type HelloWord_SayHelloStreamClientServer = grpc.ClientStreamingServer[WorldRequest, WorldResponse]
+type HelloWorld_SayHelloStreamClientServer = grpc.ClientStreamingServer[WorldRequest, WorldResponse]
 
-func _HelloWord_SayHelloBidirectional_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(HelloWordServer).SayHelloBidirectional(&grpc.GenericServerStream[WorldRequest, WorldResponse]{ServerStream: stream})
+func _HelloWorld_SayHelloBidirectional_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(HelloWorldServer).SayHelloBidirectional(&grpc.GenericServerStream[WorldRequest, WorldResponse]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type HelloWord_SayHelloBidirectionalServer = grpc.BidiStreamingServer[WorldRequest, WorldResponse]
+type HelloWorld_SayHelloBidirectionalServer = grpc.BidiStreamingServer[WorldRequest, WorldResponse]
 
-// HelloWord_ServiceDesc is the grpc.ServiceDesc for HelloWord service.
+// HelloWorld_ServiceDesc is the grpc.ServiceDesc for HelloWorld service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var HelloWord_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "kaffein.pb.HelloWord",
-	HandlerType: (*HelloWordServer)(nil),
+var HelloWorld_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "kaffein.pb.HelloWorld",
+	HandlerType: (*HelloWorldServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "SayHelloUnary",
-			Handler:    _HelloWord_SayHelloUnary_Handler,
+			Handler:    _HelloWorld_SayHelloUnary_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "sayHelloStreamServer",
-			Handler:       _HelloWord_SayHelloStreamServer_Handler,
+			Handler:       _HelloWorld_SayHelloStreamServer_Handler,
 			ServerStreams: true,
 		},
 		{
 			StreamName:    "SayHelloStreamClient",
-			Handler:       _HelloWord_SayHelloStreamClient_Handler,
+			Handler:       _HelloWorld_SayHelloStreamClient_Handler,
 			ClientStreams: true,
 		},
 		{
 			StreamName:    "sayHelloBidirectional",
-			Handler:       _HelloWord_SayHelloBidirectional_Handler,
+			Handler:       _HelloWorld_SayHelloBidirectional_Handler,
 			ServerStreams: true,
 			ClientStreams: true,
 		},
